@@ -65,7 +65,7 @@ pipeline {
                     
                     // Wait and test
                     sh 'sleep 5'
-                    sh 'curl -f http://localhost:3000/health || exit 1'
+                    sh 'curl -f http://host.docker.internal:3000/health || exit 1'
                 }
             }
         }
