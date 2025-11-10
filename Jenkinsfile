@@ -58,14 +58,15 @@ pipeline {
             }
         }
         
-        stage('Verify Deployment') {
-            steps {
-                script {
-                    sh "docker ps | grep ${CONTAINER_NAME}"
-                    sh 'curl -s http://host.docker.internal:3000/health | grep "Jenkins CI/CD Demo"'
-                }
-            }
+stage('Verify Deployment') {
+    steps {
+        script {
+            sh "docker ps | grep ${CONTAINER_NAME}"
+            sh 'curl -f http://host.docker.internal:3000/health || exit 1'
         }
+    }
+}
+
     }
     
     post {
